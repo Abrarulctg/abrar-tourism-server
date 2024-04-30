@@ -30,6 +30,7 @@ async function run() {
         await client.connect();
 
         const spotCollection = client.db('touristSpotDB').collection('touristSpots');
+        const countryCollection = client.db('touristSpotDB').collection('countries');
 
         app.post('/touristSpot', async (req, res) => {
             const newSpot = req.body;
@@ -82,6 +83,13 @@ async function run() {
             const id = req.params.id;
             const query = { _id: new ObjectId(id) };
             const result = await spotCollection.deleteOne(query);
+            res.send(result);
+        })
+
+        //Get Country DAta
+        app.get('/country', async (req, res) => {
+            const cursor = countryCollection.find();
+            const result = await cursor.toArray();
             res.send(result);
         })
 
