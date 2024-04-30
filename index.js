@@ -86,13 +86,24 @@ async function run() {
             res.send(result);
         })
 
+
         //Get Country DAta
+        //Get All country
         app.get('/country', async (req, res) => {
             const cursor = countryCollection.find();
             const result = await cursor.toArray();
             res.send(result);
         })
 
+
+        //Find Country with id
+        //Find Spot
+        app.get('/country/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: new ObjectId(id) };
+            const result = await countryCollection.findOne(query);
+            res.send(result);
+        })
 
         // Send a ping to confirm a successful connection
         await client.db("admin").command({ ping: 1 });
