@@ -8,10 +8,6 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-//abrarTourism
-//6e9tPQz30EyUdXNS
-
-
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.1qcsvas.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 // console.log(uri)
@@ -27,7 +23,7 @@ const client = new MongoClient(uri, {
 async function run() {
     try {
         // Connect the client to the server	(optional starting in v4.7)
-        await client.connect();
+        // await client.connect();
 
         const spotCollection = client.db('touristSpotDB').collection('touristSpots');
         const countryCollection = client.db('touristSpotDB').collection('countries');
