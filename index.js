@@ -55,26 +55,27 @@ async function run() {
 
 
         //Update coffee
-        // app.put('/coffee/:id', async (req, res) => {
-        //     const id = req.params.id;
-        //     const filter = { _id: new ObjectId(id) };
-        //     const options = { upsert: true };
-        //     const updatedCoffee = req.body;
-        //     const coffee = {
-        //         $set: {
-        //             name: updatedCoffee.name,
-        //             quantity: updatedCoffee.quantity,
-        //             supplier: updatedCoffee.supplier,
-        //             taste: updatedCoffee.taste,
-        //             category: updatedCoffee.category,
-        //             details: updatedCoffee.details,
-        //             photo: updatedCoffee.photo,
-
-        //         }
-        //     }
-        //     const result = await coffeeCollection.updateOne(filter, coffee, options);
-        //     res.send(result);
-        // })
+        app.put('/touristSpot/:id', async (req, res) => {
+            const id = req.params.id;
+            const filter = { _id: new ObjectId(id) };
+            const options = { upsert: true };
+            const updatedTouristSpot = req.body;
+            const touristSpot = {
+                $set: {
+                    photo: updatedTouristSpot.photo,
+                    touristSpotName: updatedTouristSpot.touristSpotName,
+                    country: updatedTouristSpot.country,
+                    location: updatedTouristSpot.location,
+                    averageCost: updatedTouristSpot.averageCost,
+                    description: updatedTouristSpot.description,
+                    seasonality: updatedTouristSpot.seasonality,
+                    travelTime: updatedTouristSpot.travelTime,
+                    totalVisit: updatedTouristSpot.totalVisit,
+                }
+            }
+            const result = await spotCollection.updateOne(filter, touristSpot, options);
+            res.send(result);
+        })
 
         //Delete
         app.delete("/touristSpot/:id", async (req, res) => {
